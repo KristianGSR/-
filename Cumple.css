@@ -1,0 +1,77 @@
+/* Importa la fuente bonita */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body {
+    /* Puedes cambiar el color de fondo */
+    background-color: #fce4ec; /* Un rosa pálido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa toda la pantalla */
+    margin: 0;
+    font-family: 'Pacifico', cursive; /* Fuente bonita */
+    text-align: center;
+    color: #d81b60; /* Un rosa más oscuro */
+    overflow: hidden; /* Para los confetis */
+}
+
+.tarjeta {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    animation: aparecer 1s ease-out;
+}
+
+h1 {
+    font-size: 2.8em;
+    margin: 0;
+}
+
+/* 3. CAMBIA EL MENSAJE PRINCIPAL (OPCIONAL) */
+.nombre-amiga {
+    font-size: 2em;
+    color: #555;
+    margin: 10px 0;
+}
+
+.torta {
+    font-size: 6em; /* Tamaño de la torta */
+    margin: 20px 0;
+    position: relative;
+    animation: palpitar 1.5s infinite;
+}
+
+#edad {
+    font-family: 'Arial', sans-serif; /* Fuente clara para el número */
+    font-weight: bold;
+    font-size: 0.5em; /* Tamaño del número */
+    position: absolute;
+    top: 35%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #333;
+}
+
+/* 4. CAMBIA EL MENSAJE SECUNDARIO (OPCIONAL) */
+.mensaje-amor {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+/* Animaciones */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes palpitar {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
