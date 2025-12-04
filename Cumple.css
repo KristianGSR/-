@@ -32,32 +32,43 @@ body {
     border: 8px solid white;
     border-bottom: 20px solid white;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    opacity: 1 !important; /* Forzamos que se vean nítidas */
+    opacity: 1 !important;
     transition: transform 0.3s;
 }
 
-/* --- POSICIONES DE FOTOS --- */
+/* --- POSICIONES ESQUINAS --- */
 .foto-1 { top: -20px; left: -20px; transform: rotate(-15deg); }
 .foto-2 { top: -30px; right: -10px; transform: rotate(10deg); }
 .foto-3 { bottom: -10px; left: -10px; transform: rotate(5deg); }
 .foto-4 { bottom: -20px; right: -20px; transform: rotate(-12deg); }
 
-.foto-5 { top: 30%; left: -30px; transform: rotate(6deg); }
-/* Corrección Foto 6: Un ángulo más suave para que no se vea chueca */
-.foto-6 { top: 30%; right: -30px; transform: rotate(-6deg); }
+/* --- POSICIONES CENTRALES (ALINEACIÓN EXACTA) --- */
+/* Usamos top: 50% y translateY(-50%) para forzar el centro exacto */
+
+/* Foto 5 (Izquierda) */
+.foto-5 { 
+    top: 50%; 
+    left: -30px; 
+    transform: translateY(-50%) rotate(6deg); 
+}
+
+/* Foto 6 (Derecha - Vertical) */
+.foto-6 { 
+    top: 50%; 
+    right: -50px; 
+    /* Girada 90 grados y centrada */
+    transform: translateY(-50%) rotate(90deg) !important; 
+    border-bottom: 8px solid white !important; 
+}
 
 
-/* --- TARJETA TRANSPARENTE (VIDRIO LIMPIO) --- */
+/* --- TARJETA TRANSPARENTE --- */
 .tarjeta {
-    /* FONDO CASI INVISIBLE (Solo 10% blanco) */
     background: rgba(255, 255, 255, 0.1) !important;
-    
-    /* QUITAMOS LO BORROSO FORZOSAMENTE */
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    
+    border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 30px 20px;
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); 
@@ -67,7 +78,6 @@ body {
     z-index: 10;
     max-width: 400px;
     
-    /* Sombra fuerte al texto para leerlo sobre las fotos */
     text-shadow: 2px 2px 4px #ffffff, 0 0 10px #ffffff;
 }
 
@@ -105,12 +115,12 @@ h1 { font-size: 2.8em; margin: 0; }
     100% { transform: scale(1); }
 }
 
-/* --- CELULARES --- */
+/* --- CELULAR (Ajustes finos) --- */
 @media (max-width: 600px) {
     .tarjeta {
         width: 70%; 
         padding: 20px 10px;
-        background: rgba(255, 255, 255, 0.1) !important; /* Aseguramos transparencia en celular */
+        background: rgba(255, 255, 255, 0.1) !important;
         backdrop-filter: none !important;
     }
     
@@ -125,8 +135,24 @@ h1 { font-size: 2.8em; margin: 0; }
         border-bottom: 12px solid white;
     }
     
-    /* Posiciones ajustadas para celular */
-    .foto-5 { left: -20px; top: 35%; }
-    .foto-6 { right: -20px; top: 35%; }
+    /* ALINEACIÓN CENTRAL PERFECTA EN CELULAR */
+    
+    .foto-5 { 
+        left: -20px; 
+        top: 50%; /* Justo a la mitad de la pantalla */
+        /* La centramos con translateY */
+        transform: translateY(-50%) rotate(6deg); 
+    }
+
+    .foto-6 { 
+        right: -30px; 
+        top: 50%; /* Justo a la mitad de la pantalla */
+        
+        /* TRUCO: Agregamos scale(1.2) para hacerla un 20% más grande 
+           y compensar que se veía chica */
+        transform: translateY(-50%) rotate(90deg) scale(1.2) !important;
+        
+        border-bottom: 4px solid white !important; 
+    }
 }
 
