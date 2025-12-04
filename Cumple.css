@@ -127,8 +127,14 @@ h1 {
 /* RESPONSIVE (CELULARES) */
 @media (max-width: 600px) {
     .tarjeta {
-        width: 85%;
-        padding: 25px 20px;
+        /* ANTES: width: 85%; */
+        width: 75%; /* Hacemos la tarjeta más angosta */
+        
+        /* Reducimos más el espacio interno */
+        padding: 20px 15px; 
+        
+        /* Opcional: si el texto queda muy apretado, reduce un pelín más las fuentes */
+        /* h1 { font-size: 2em; } */
     }
     
     h1 { font-size: 2.2em; }
@@ -143,3 +149,4 @@ h1 {
         opacity: 0.6; /* Más transparentes en celular para leer bien */
     }
 }
+
