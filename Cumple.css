@@ -50,29 +50,85 @@ body {
 .foto-6 { top: 50%; right: -50px; transform: rotate(-5deg); }
 
 
-/* --- ESTILO CRISTAL (GLASSMORPHISM) --- */
-.tarjeta {
-    /* Fondo muy transparente (solo 25% de blanco) */
-    background: rgba(255, 255, 255, 0.25);
-    
-    /* EL TRUCO: Desenfoque del fondo para que el texto se lea */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Para compatibilidad con Safari/iOS */
+/* --- ESTILO CRISTAL (GLASSMORPHISM) --- */@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-    /* Borde sutil blanco para simular el borde del vidrio */
-    border: 1px solid rgba(255, 255, 255, 0.4);
+body {
+    /* Fondo con un degradado suave rosa */
+    background-image: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    color: #d81b60; 
+    overflow: hidden; 
+    position: relative;
+}
+
+/* --- ESTILOS DE LAS FOTOS DE FONDO --- */
+.fondo-fotos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    pointer-events: none;
+}
+
+.foto-polaroid {
+    position: absolute;
+    width: 180px;
+    height: auto;
+    border: 8px solid white;
+    border-bottom: 20px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    
+    /* CAMBIO: Opacidad al 100% para que no sean transparentes */
+    opacity: 1; 
+    
+    transition: transform 0.3s;
+}
+
+/* --- UBICACIÓN DE LAS 6 FOTOS --- */
+/* Esquinas */
+.foto-1 { top: -20px; left: -20px; transform: rotate(-15deg); }
+.foto-2 { top: -30px; right: -10px; transform: rotate(10deg); }
+.foto-3 { bottom: -10px; left: -10px; transform: rotate(5deg); }
+.foto-4 { bottom: -20px; right: -20px; transform: rotate(-12deg); }
+
+/* CAMBIO: Nuevas posiciones para las fotos laterales */
+/* Foto 5: Lado izquierdo, centrada verticalmente entre la 1 y la 3 */
+.foto-5 { top: 30%; left: -30px; transform: rotate(6deg); }
+/* Foto 6: Lado derecho, centrada verticalmente entre la 2 y la 4 */
+.foto-6 { top: 30%; right: -30px; transform: rotate(-6deg); }
+
+
+/* --- ESTILO CRISTAL (GLASSMORPHISM) PARA LA TARJETA --- */
+.tarjeta {
+    /* CAMBIO: Fondo blanco MUY transparente (solo 20%) */
+    background: rgba(255, 255, 255, 0.2);
+    
+    /* Efecto de desenfoque para el fondo */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    /* Borde fino y semitransparente */
+    border: 1px solid rgba(255, 255, 255, 0.3);
     
     padding: 30px 20px;
     border-radius: 20px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Sombra suave */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
     
     animation: aparecer 1s ease-out;
     position: relative;
     z-index: 10;
     max-width: 400px;
     
-    /* Sombra al texto para que no se pierda en las fotos */
-    text-shadow: 0 2px 5px rgba(255, 255, 255, 0.8);
+    /* Sombra al texto para que se lea bien sobre el fondo transparente */
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
 }
 
 h1 { font-size: 2.8em; margin: 0; }
@@ -83,7 +139,7 @@ h1 { font-size: 2.8em; margin: 0; }
     margin: 20px 0;
     position: relative;
     animation: palpitar 1.5s infinite;
-    text-shadow: none;
+    text-shadow: none; /* La torta no necesita sombra */
 }
 
 #edad {
@@ -94,6 +150,7 @@ h1 { font-size: 2.8em; margin: 0; }
     top: 38%; left: 50%;
     transform: translate(-50%, -50%);
     color: #333;
+    text-shadow: none;
 }
 
 .mensaje-amor { font-size: 1.5em; margin-top: 10px; }
@@ -112,25 +169,24 @@ h1 { font-size: 2.8em; margin: 0; }
 /* --- RESPONSIVE (CELULARES) --- */
 @media (max-width: 600px) {
     .tarjeta {
-        width: 75%; 
+        /* CAMBIO: Tarjeta más pequeña en celular para ver más fotos */
+        width: 70%; 
         padding: 20px 10px;
-        /* Aumentamos el desenfoque en celular para leer mejor */
-        backdrop-filter: blur(12px); 
     }
     
     h1 { font-size: 1.8em; }
-    .nombre-amiga { font-size: 1.4em; }
-    .torta { font-size: 4.5em; }
+    .nombre-amiga { font-size: 1.4em; margin: 5px 0; }
+    .torta { font-size: 4em; margin: 15px 0; }
     .mensaje-amor { font-size: 1.2em; }
     
-    /* En celular hacemos las fotos más chicas para que quepan */
+    /* Fotos más chicas en celular */
     .foto-polaroid {
         width: 100px; 
         border: 4px solid white;
         border-bottom: 12px solid white;
     }
     
-    /* Ajustamos posiciones para que no se amontonen tanto en pantalla chica */
+    /* Ajuste de posiciones en celular */
     .foto-5 { left: -20px; top: 35%; }
-    .foto-6 { right: -20px; top: 55%; }
+    .foto-6 { right: -20px; top: 35%; }
 }
