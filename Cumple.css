@@ -1,26 +1,81 @@
-/* Importa la fuente bonita */
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 body {
-    /* Puedes cambiar el color de fondo */
-    background-color: #fce4ec; /* Un rosa pálido */
+    background-color: #fce4ec; /* Rosa pálido */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ocupa toda la pantalla */
+    height: 100vh;
     margin: 0;
-    font-family: 'Pacifico', cursive; /* Fuente bonita */
+    font-family: 'Pacifico', cursive;
     text-align: center;
-    color: #d81b60; /* Un rosa más oscuro */
-    overflow: hidden; /* Para los confetis */
+    color: #d81b60;
+    overflow: hidden; 
+    position: relative; /* Necesario para las fotos de fondo */
 }
+
+/* --- ESTILOS DE LAS FOTOS DE FONDO (POLAROIDS) --- */
+.fondo-fotos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Se quedan DETRÁS de la tarjeta */
+    pointer-events: none; /* Para que no molesten al hacer click */
+}
+
+.foto-polaroid {
+    position: absolute;
+    width: 200px; /* Tamaño de la foto */
+    height: auto;
+    border: 10px solid white; /* Borde blanco grueso estilo foto */
+    border-bottom: 25px solid white; /* Borde de abajo más grueso (estilo Polaroid) */
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.2); /* Sombrita */
+    opacity: 0.9; 
+}
+
+/* Ubicación de cada foto (Esquinas desordenadas) */
+
+/* Arriba Izquierda */
+.foto-1 {
+    top: -30px;
+    left: -30px;
+    transform: rotate(-15deg);
+}
+
+/* Arriba Derecha */
+.foto-2 {
+    top: -20px;
+    right: -20px;
+    transform: rotate(10deg);
+}
+
+/* Abajo Izquierda */
+.foto-3 {
+    bottom: -10px;
+    left: 2%;
+    transform: rotate(8deg);
+}
+
+/* Abajo Derecha */
+.foto-4 {
+    bottom: -40px;
+    right: -10px;
+    transform: rotate(-20deg);
+}
+
+/* -------------------------------------------------- */
 
 .tarjeta {
     background: white;
     padding: 40px 30px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     animation: aparecer 1s ease-out;
+    position: relative;
+    z-index: 10; /* La tarjeta siempre encima de las fotos */
+    max-width: 400px;
 }
 
 h1 {
@@ -28,7 +83,6 @@ h1 {
     margin: 0;
 }
 
-/* 3. CAMBIA EL MENSAJE PRINCIPAL (OPCIONAL) */
 .nombre-amiga {
     font-size: 2em;
     color: #555;
@@ -36,24 +90,23 @@ h1 {
 }
 
 .torta {
-    font-size: 6em; /* Tamaño de la torta */
+    font-size: 6em;
     margin: 20px 0;
     position: relative;
     animation: palpitar 1.5s infinite;
 }
 
 #edad {
-    font-family: 'Arial', sans-serif; /* Fuente clara para el número */
+    font-family: 'Arial', sans-serif;
     font-weight: bold;
-    font-size: 0.5em; /* Tamaño del número */
+    font-size: 0.5em;
     position: absolute;
-    top: 35%; 
+    top: 38%; 
     left: 50%;
     transform: translate(-50%, -50%);
     color: #333;
 }
 
-/* 4. CAMBIA EL MENSAJE SECUNDARIO (OPCIONAL) */
 .mensaje-amor {
     font-size: 1.5em;
     margin-top: 10px;
@@ -61,47 +114,32 @@ h1 {
 
 /* Animaciones */
 @keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
 }
+
 @keyframes palpitar {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
-
 }
 
-/* --- Pega esto al FINAL de tu Cumple.css --- */
-
+/* RESPONSIVE (CELULARES) */
 @media (max-width: 600px) {
-    
     .tarjeta {
-        /* Hacemos que la tarjeta ocupe el 90% de la pantalla */
-        width: 90%; 
-        
-        /* Reducimos el padding para pantallas chicas */
-        padding: 25px 20px; 
+        width: 85%;
+        padding: 25px 20px;
     }
-
-    h1 {
-        font-size: 2.2em; /* Un poco más chico el título */
-    }
-
-    .nombre-amiga {
-        font-size: 1.8em; /* Un poco más chico el nombre */
-    }
-
-    .torta {
-        font-size: 5em; /* Un poco más chica la torta */
-    }
-
-    .mensaje-amor {
-        font-size: 1.3em;
+    
+    h1 { font-size: 2.2em; }
+    .nombre-amiga { font-size: 1.6em; }
+    .torta { font-size: 5em; }
+    
+    /* Ajuste de fotos para pantalla chica */
+    .foto-polaroid {
+        width: 120px; 
+        border: 5px solid white;
+        border-bottom: 15px solid white;
+        opacity: 0.6; /* Más transparentes en celular para leer bien */
     }
 }
