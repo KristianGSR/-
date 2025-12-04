@@ -14,7 +14,7 @@ body {
     position: relative;
 }
 
-/* --- ESTILOS DE LAS FOTOS DE FONDO --- */
+/* --- FOTOS DEL FONDO --- */
 .fondo-fotos {
     position: fixed;
     top: 0;
@@ -32,45 +32,43 @@ body {
     border: 8px solid white;
     border-bottom: 20px solid white;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    opacity: 1; /* Fotos 100% visibles y nítidas */
+    opacity: 1 !important; /* Forzamos que se vean nítidas */
     transition: transform 0.3s;
 }
 
-/* --- UBICACIÓN DE LAS 6 FOTOS --- */
-/* Esquinas */
+/* --- POSICIONES DE FOTOS --- */
 .foto-1 { top: -20px; left: -20px; transform: rotate(-15deg); }
 .foto-2 { top: -30px; right: -10px; transform: rotate(10deg); }
 .foto-3 { bottom: -10px; left: -10px; transform: rotate(5deg); }
 .foto-4 { bottom: -20px; right: -20px; transform: rotate(-12deg); }
 
-/* Laterales */
 .foto-5 { top: 30%; left: -30px; transform: rotate(6deg); }
-/* CAMBIO: Ajuste de rotación para la foto 6 */
-.foto-6 { top: 30%; right: -30px; transform: rotate(8deg); }
+/* Corrección Foto 6: Un ángulo más suave para que no se vea chueca */
+.foto-6 { top: 30%; right: -30px; transform: rotate(-6deg); }
 
 
-/* --- ESTILO VIDRIO LIMPIO (SIN BORROSO) --- */
+/* --- TARJETA TRANSPARENTE (VIDRIO LIMPIO) --- */
 .tarjeta {
-    /* CAMBIO: Fondo blanco casi transparente (solo 10%) */
-    background: rgba(255, 255, 255, 0.1);
+    /* FONDO CASI INVISIBLE (Solo 10% blanco) */
+    background: rgba(255, 255, 255, 0.1) !important;
     
-    /* CAMBIO IMPORTANTE: Se eliminó el filtro de desenfoque (blur) */
-    /* backdrop-filter: blur(10px);  <-- ELIMINADO */
+    /* QUITAMOS LO BORROSO FORZOSAMENTE */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 
-    /* Borde muy fino y sutil */
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     
     padding: 30px 20px;
     border-radius: 20px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1); /* Sombra más suave */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); 
     
     animation: aparecer 1s ease-out;
     position: relative;
     z-index: 10;
     max-width: 400px;
     
-    /* CAMBIO: Sombra de texto más fuerte para leer bien sobre las fotos */
-    text-shadow: 0 2px 4px rgba(255, 255, 255, 1), 0 0 2px rgba(0,0,0,0.1);
+    /* Sombra fuerte al texto para leerlo sobre las fotos */
+    text-shadow: 2px 2px 4px #ffffff, 0 0 10px #ffffff;
 }
 
 h1 { font-size: 2.8em; margin: 0; }
@@ -97,7 +95,6 @@ h1 { font-size: 2.8em; margin: 0; }
 
 .mensaje-amor { font-size: 1.5em; margin-top: 10px; }
 
-/* Animaciones */
 @keyframes aparecer {
     from { opacity: 0; transform: scale(0.8); }
     to { opacity: 1; transform: scale(1); }
@@ -108,11 +105,13 @@ h1 { font-size: 2.8em; margin: 0; }
     100% { transform: scale(1); }
 }
 
-/* --- RESPONSIVE (CELULARES) --- */
+/* --- CELULARES --- */
 @media (max-width: 600px) {
     .tarjeta {
         width: 70%; 
         padding: 20px 10px;
+        background: rgba(255, 255, 255, 0.1) !important; /* Aseguramos transparencia en celular */
+        backdrop-filter: none !important;
     }
     
     h1 { font-size: 1.8em; }
@@ -126,7 +125,8 @@ h1 { font-size: 2.8em; margin: 0; }
         border-bottom: 12px solid white;
     }
     
-    /* Ajuste de posiciones en celular */
+    /* Posiciones ajustadas para celular */
     .foto-5 { left: -20px; top: 35%; }
     .foto-6 { right: -20px; top: 35%; }
 }
+
