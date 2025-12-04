@@ -30,7 +30,7 @@ body {
     width: 180px;
     height: auto;
     border: 8px solid white;
-    border-bottom: 20px solid white; /* Borde estilo polaroid original */
+    border-bottom: 20px solid white;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     opacity: 1 !important;
     transition: transform 0.3s;
@@ -44,22 +44,19 @@ body {
 
 /* --- POSICIONES CENTRALES --- */
 
-/* Foto 5 (Izquierda) - Centrada verticalmente */
+/* Foto 5 (Izquierda) */
 .foto-5 { 
     top: 50%; 
     left: -30px; 
     transform: translateY(-50%) rotate(6deg); 
 }
 
-/* Foto 6 (Derecha) - CORREGIDA: Como estaba antes */
+/* Foto 6 (Derecha) - CORREGIDA: Movida hacia adentro */
 .foto-6 { 
-    top: 50%;  /* Centrada verticalmente */
-    right: -30px; 
-    
-    /* Regresamos a una rotación ligera y natural, quitando los 90 grados */
+    top: 50%;  
+    /* CAMBIO: La movemos de -30px a 0px para que no se corte */
+    right: 0px; 
     transform: translateY(-50%) rotate(-6deg) !important; 
-    
-    /* Ya no modificamos el borde, se verá con el borde grueso de polaroid */
 }
 
 
@@ -106,7 +103,6 @@ h1 { font-size: 2.8em; margin: 0; }
 
 .mensaje-amor { font-size: 1.5em; margin-top: 10px; }
 
-/* Estilo del botón compartir (por si lo agregaste) */
 .btn-share {
     background-color: #d81b60;
     color: white;
@@ -158,13 +154,11 @@ h1 { font-size: 2.8em; margin: 0; }
         transform: translateY(-50%) rotate(6deg); 
     }
 
+    /* Foto 6 en celular: También la metemos más */
     .foto-6 { 
-        right: -30px; 
+        right: 0px; /* CAMBIO: Ahora está justo en el borde, no afuera */
         top: 50%; 
-        
-        /* CORREGIDO: Rotación normal (-6deg) y escala un poco mayor */
         transform: translateY(-50%) rotate(-6deg) scale(1.2) !important;
-        
-        /* Quitamos el override del borde para que tenga el borde normal */
     }
 }
+
