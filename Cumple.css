@@ -51,17 +51,17 @@ body {
 
 /* Foto 7: Un poco a la izquierda y arriba del centro */
 .foto-7 { 
-    top: 40%; 
-    left: 35%; 
-    transform: translate(-50%, -50%) rotate(-8deg); 
+    top: 30%; 
+    left: 25%; 
+    transform: translate(-50%, -50%) rotate(-15deg); 
     z-index: -2; /* Para asegurar que no tapen a las de los lados */
 }
 
 /* Foto 8: Un poco a la derecha y abajo del centro */
 .foto-8 { 
-    top: 60%; 
-    left: 65%; 
-    transform: translate(-50%, -50%) rotate(10deg); 
+    top: 70%; 
+    left: 75%; 
+    transform: translate(-50%, -50%) rotate(15deg); 
     z-index: -2;
 }
 
@@ -169,5 +169,6 @@ h1 { font-size: 2.8em; margin: 0; }
         left: 60%; 
     }
 }
+
 
 
