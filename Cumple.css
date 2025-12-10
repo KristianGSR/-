@@ -153,30 +153,28 @@ h1 { font-size: 2.8em; margin: 0; }
         border-bottom: 12px solid white;
     }
     
-    /* --- REACOMODO DE FOTOS PARA QUE NO ESTORBEN --- */
-    
     /* Lados: Centradas verticalmente */
     .foto-5 { left: -20px; top: 50%; transform: translateY(-50%) rotate(6deg); }
     .foto-6 { right: 0px; top: 50%; transform: translateY(-50%) rotate(-6deg) scale(1.2) !important; }
 
-    /* FOTO 7: Arriba al centro (En el hueco superior) */
+    /* --- INTERCAMBIO DE POSICIONES 7 Y 8 --- */
+
+    /* FOTO 7 (La chica): Ahora ABAJO al centro */
     .foto-7 { 
         width: 90px;
-        top: 6%;      /* Bien arriba */
-        left: 50%;    /* Centrada horizontalmente */
-        /* El translate(-50%) es el truco para que quede EXACTO al centro */
-        transform: translateX(-50%) rotate(-3deg); 
-    }
-
-    /* FOTO 8: Abajo al centro (En el hueco inferior) */
-    .foto-8 { 
-        width: 90px;
-        top: 90%;     /* Bien abajo (casi al final) */
-        left: 50%;    /* Centrada horizontalmente */
+        top: 90%;     /* La mandamos abajo */
+        left: 50%;
         transform: translateX(-50%) rotate(3deg); 
     }
-}
 
+    /* FOTO 8 (La grande): Ahora ARRIBA al centro */
+    .foto-8 { 
+        width: 90px;
+        top: 6%;      /* La mandamos arriba donde hay más espacio */
+        left: 50%;
+        transform: translateX(-50%) rotate(-3deg); 
+    }
+}
 
 
 
