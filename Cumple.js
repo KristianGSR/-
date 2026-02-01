@@ -32,10 +32,10 @@ function girarEdad() {
 
 function lanzarCorazones() {
     // Creamos 50 corazones
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 100; i++) {
         const corazon = document.createElement('div');
         corazon.classList.add('corazon-lluvia');
-        corazon.textContent = '❤️'; // Puedes usar '💖' o '💗' también
+        corazon.textContent = 💗'; // Puedes usar '💖' o '💗' también
         
         // Posición horizontal aleatoria
         corazon.style.left = Math.random() * 100 + 'vw';
@@ -59,3 +59,4 @@ function lanzarCorazones() {
 }
 
 const intervaloGiro = setInterval(girarEdad, velocidadGiro);
+
