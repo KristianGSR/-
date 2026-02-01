@@ -109,18 +109,17 @@ h1 { font-family: 'Pacifico', cursive; font-size: 2.8em; margin: 0; }
     .foto-7 { top: 85%; left: 50%; transform: translateX(-50%) rotate(3deg); }
     .foto-8 { top: 1%; left: 50%; transform: translateX(-50%) rotate(-3deg); }
 }
-/* --- EFECTO LLUVIA DE CONFETI --- */
+/* --- EFECTO LLUVIA DE CONFETI MEJORADO --- */
 .confeti-lluvia {
     position: fixed;
-    top: -20px; /* Empiezan arriba fuera de pantalla */
+    top: -20px;
     z-index: 999;
     user-select: none;
     pointer-events: none;
-    /* Forma base del papelito */
     width: 10px;
     height: 10px;
-    /* La animación que los hace caer y girar */
-    animation: caerConfeti linear forwards;
+    /* Cambiamos 'linear' por 'ease-out' para que parezca que el aire los frena */
+    animation: caerConfeti ease-out forwards;
 }
 
 @keyframes caerConfeti {
@@ -129,8 +128,8 @@ h1 { font-family: 'Pacifico', cursive; font-size: 2.8em; margin: 0; }
         opacity: 1;
     }
     100% {
-        /* Caen hasta abajo y giran mucho más rápido en 3D */
-        transform: translateY(110vh) rotate(720deg) rotateX(360deg);
+        /* Movimiento más amplio al caer */
+        transform: translateY(110vh) rotate(1080deg) rotateX(720deg);
         opacity: 0;
     }
 }
