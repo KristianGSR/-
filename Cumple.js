@@ -5,6 +5,9 @@ let edadActual = 1;
 let giros = 0;
 const velocidadGiro = 40; 
 
+// Colores para el confeti (Amarillo, Rosa fuerte, Azul, Verde, Naranja)
+const coloresConfeti = ['#ffeb3b', '#d81b60', '#2196f3', '#4caf50', '#ff9800'];
+
 function girarEdad() {
     elementoEdad.textContent = edadActual;
     edadActual++;
@@ -19,44 +22,47 @@ function girarEdad() {
             elementoEdad.textContent = EDAD_FINAL;
             clearInterval(intervaloGiro);
             
-            // Efectos visuales finales
+            // Efectos visuales finales en el número
             elementoEdad.style.color = "#d81b60";
-            elementoEdad.style.transform = 'translate(-50%, -50%) scale(1.4)';
+            // Un poco más grande el golpe final
+            elementoEdad.style.transform = 'translate(-50%, -50%) scale(1.6)'; 
             elementoEdad.style.transition = 'all 0.4s ease';
             
-            // ¡LANZAR LLUVIA DE CORAZONES!
-            lanzarCorazones();
+            // ¡LANZAR CONFETI FESTIVO!
+            lanzarConfeti();
         }
     }
 }
 
-function lanzarCorazones() {
-    // Creamos 50 corazones
+function lanzarConfeti() {
+    // Creamos 100 papelitos para que se vea tupido
     for (let i = 0; i < 100; i++) {
-        const corazon = document.createElement('div');
-        corazon.classList.add('corazon-lluvia');
-        corazon.textContent = 💗'; // Puedes usar '💖' o '💗' también
+        const confeti = document.createElement('div');
+        confeti.classList.add('confeti-lluvia');
+        
+        // Asignar color aleatorio de nuestra lista
+        confeti.style.backgroundColor = coloresConfeti[Math.floor(Math.random() * coloresConfeti.length)];
         
         // Posición horizontal aleatoria
-        corazon.style.left = Math.random() * 100 + 'vw';
+        confeti.style.left = Math.random() * 100 + 'vw';
         
-        // Tamaño aleatorio
-        corazon.style.fontSize = Math.random() * 20 + 15 + 'px';
+        // Tamaños variados (unos más rectangulares que otros)
+        confeti.style.width = Math.random() * 12 + 5 + 'px';
+        confeti.style.height = Math.random() * 8 + 5 + 'px';
         
-        // Velocidad de caída aleatoria (entre 3 y 5 segundos)
-        corazon.style.animationDuration = Math.random() * 2 + 3 + 's';
+        // Velocidad de caída variada (entre 2 y 4 segundos, caen más rápido que los corazones)
+        confeti.style.animationDuration = Math.random() * 2 + 2 + 's';
         
-        // Retraso aleatorio para que no caigan todos al mismo tiempo
-        corazon.style.animationDelay = Math.random() * 2 + 's';
+        // Retraso aleatorio para que no caigan en bloque
+        confeti.style.animationDelay = Math.random() * 1.5 + 's';
         
-        document.body.appendChild(corazon);
+        document.body.appendChild(confeti);
         
-        // Borrar el corazón del código después de que termine la animación para no saturar
+        // Limpiar el código después de que caen
         setTimeout(() => {
-            corazon.remove();
-        }, 6000);
+            confeti.remove();
+        }, 5000);
     }
 }
 
 const intervaloGiro = setInterval(girarEdad, velocidadGiro);
-
