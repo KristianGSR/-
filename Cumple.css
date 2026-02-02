@@ -11,29 +11,18 @@ body {
     text-align: center;
     color: #d81b60; 
     overflow: hidden; 
-    position: relative;
 }
 
-/* --- FOTOS DEL FONDO (CONFIGURACIÓN ORIGINAL) --- */
-.fondo-fotos {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: -1; 
-    pointer-events: none;
-}
-
+/* --- FOTOS --- */
 .foto-polaroid {
     position: absolute;
-    width: 180px; /* Tamaño original de escritorio */
+    width: 180px;
     height: auto;
     border: 8px solid white;
     border-bottom: 20px solid white;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    transition: transform 0.3s;
 }
 
-/* POSICIONES ORIGINALES */
 .foto-1 { top: -20px; left: -20px; transform: rotate(-15deg); }
 .foto-2 { top: -30px; right: -10px; transform: rotate(10deg); }
 .foto-3 { bottom: -10px; left: -10px; transform: rotate(5deg); }
@@ -43,10 +32,10 @@ body {
 .foto-7 { top: 30%; left: 25%; transform: translate(-50%, -50%) rotate(-15deg); z-index: -2; }
 .foto-8 { top: 70%; left: 75%; transform: translate(-50%, -50%) rotate(15deg); z-index: -2; }
 
-/* --- TARJETA TRANSPARENTE (CONFIGURACIÓN ORIGINAL) --- */
+/* --- TARJETA --- */
 .tarjeta {
-    background: rgba(255, 255, 255, 0.1) !important; /* Más transparente como antes */
-    backdrop-filter: none !important; /* Sin el efecto borroso pesado */
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: none !important;
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 30px 20px;
     border-radius: 20px;
@@ -54,19 +43,12 @@ body {
     position: relative;
     z-index: 10;
     max-width: 400px;
-    text-shadow: 2px 2px 4px #ffffff, 0 0 10px #ffffff;
+    text-shadow: 2px 2px 4px #ffffff;
 }
 
-h1 { font-family: 'Pacifico', cursive; font-size: 2.8em; margin: 0; }
-.nombre-novia { font-size: 1.8em; color: #880e4f; margin: 10px 0; }
+h1 { font-family: 'Pacifico', cursive; font-size: 2.5em; margin: 0; }
 
-.torta {
-    font-size: 5em;
-    margin: 20px 0;
-    position: relative;
-    animation: palpitar 1.5s infinite;
-    text-shadow: none;
-}
+.torta { font-size: 5em; margin: 20px 0; position: relative; animation: palpitar 1.5s infinite; }
 
 #edad {
     font-family: 'Arial', sans-serif;
@@ -78,59 +60,26 @@ h1 { font-family: 'Pacifico', cursive; font-size: 2.8em; margin: 0; }
     color: #333;
 }
 
-.mensaje-amor { font-size: 1.4em; margin-top: 10px; }
+@keyframes palpitar { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-@keyframes palpitar {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-/* --- AJUSTES CELULAR (MÁS CHICO PARA QUE SE VEA TODO) --- */
-@media (max-width: 600px) {
-    .tarjeta {
-        width: 70%; /* Más chico como pediste */
-        padding: 20px 10px;
-        background: rgba(255, 255, 255, 0.1) !important;
-    }
-    
-    h1 { font-size: 1.8em; }
-    .nombre-novia { font-size: 1.4em; }
-    .torta { font-size: 4em; }
-    
-    .foto-polaroid {
-        width: 100px; /* Tamaño chico original para móvil */
-        border: 4px solid white;
-        border-bottom: 12px solid white;
-    }
-    
-    /* Reposicionamiento para que no se encimen en el centro */
-    .foto-5 { left: -20px; top: 50%; }
-    .foto-6 { right: 0px; top: 50%; }
-    .foto-7 { top: 85%; left: 50%; transform: translateX(-50%) rotate(3deg); }
-    .foto-8 { top: 1%; left: 50%; transform: translateX(-50%) rotate(-3deg); }
-}
-/* --- EFECTO LLUVIA DE CONFETI MEJORADO --- */
-.confeti-lluvia {
+/* --- CONFETI --- */
+.confeti {
     position: fixed;
-    top: -20px;
-    z-index: 999;
-    user-select: none;
-    pointer-events: none;
-    width: 10px;
-    height: 10px;
-    /* Cambiamos 'linear' por 'ease-out' para que parezca que el aire los frena */
+    width: 10px; height: 10px;
+    top: -20px; z-index: 999;
     animation: caerConfeti ease-out forwards;
 }
 
 @keyframes caerConfeti {
-    0% {
-        transform: translateY(0) rotate(0deg) rotateX(0deg);
-        opacity: 1;
-    }
-    100% {
-        /* Movimiento más amplio al caer */
-        transform: translateY(110vh) rotate(1080deg) rotateX(720deg);
-        opacity: 0;
-    }
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
 }
 
+/* --- MÓVIL --- */
+@media (max-width: 600px) {
+    .tarjeta { width: 70%; padding: 20px 10px; }
+    h1 { font-size: 1.8em; }
+    .foto-polaroid { width: 100px; border-bottom: 15px solid white; }
+    .foto-7 { top: 85%; left: 50%; transform: translateX(-50%) rotate(3deg); }
+    .foto-8 { top: 1%; left: 50%; transform: translateX(-50%) rotate(-3deg); }
+}
