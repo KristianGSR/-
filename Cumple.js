@@ -1,11 +1,27 @@
 const EDAD_FINAL = 22; 
 const elementoEdad = document.getElementById('edad');
-
 let edadActual = 1;
 let giros = 0;
 const velocidadGiro = 40; 
+const colores = ['#ffeb3b', '#d81b60', '#2196f3', '#4caf50', '#ff9800'];
 
-const coloresConfeti = ['#ffeb3b', '#d81b60', '#2196f3', '#4caf50', '#ff9800', '#e91e63'];
+// --- SEGURO ANTI-CACHÉ: Inyectamos el estilo directamente ---
+const estiloConfeti = document.createElement('style');
+estiloConfeti.innerHTML = `
+    .confeti-seguro {
+        position: fixed !important; 
+        top: -20px;
+        z-index: 9999;
+        pointer-events: none;
+        will-change: transform;
+        animation: caerConfetiSeguro linear forwards;
+    }
+    @keyframes caerConfetiSeguro {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+`;
+document.head.appendChild(estiloConfeti);
 
 function girarEdad() {
     elementoEdad.textContent = edadActual;
@@ -21,41 +37,36 @@ function girarEdad() {
             elementoEdad.textContent = EDAD_FINAL;
             clearInterval(intervaloGiro);
             
-            elementoEdad.style.color = "#d81b60";
+            // Efecto final en el número
             elementoEdad.style.transform = 'translate(-50%, -50%) scale(1.6)'; 
             elementoEdad.style.transition = 'all 0.4s ease';
-            
+            elementoEdad.style.color = "#d81b60";
+
             lanzarConfeti();
         }
     }
 }
 
 function lanzarConfeti() {
-    // AHORA LANZAMOS 300 PAPELITOS
-    for (let i = 0; i < 300; i++) {
+    // Bajamos a 100 para que el celular no cree esa "línea de error"
+    for (let i = 0; i < 100; i++) {
         const confeti = document.createElement('div');
-        confeti.classList.add('confeti-lluvia');
+        confeti.classList.add('confeti-seguro');
         
-        confeti.style.backgroundColor = coloresConfeti[Math.floor(Math.random() * coloresConfeti.length)];
+        confeti.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+        confeti.style.width = (Math.random() * 10 + 5) + 'px';
+        confeti.style.height = (Math.random() * 8 + 5) + 'px';
+        
+        // Posición horizontal aleatoria
         confeti.style.left = Math.random() * 100 + 'vw';
         
-        // Tamaños más variados para que unos parezcan más lejos que otros
-        const tamaño = Math.random() * 10 + 5;
-        confeti.style.width = tamaño + 'px';
-        confeti.style.height = (tamaño * 0.6) + 'px';
-        
-        // DURACIÓN MÁS LARGA: Entre 4 y 7 segundos para que caigan lento
-        confeti.style.animationDuration = Math.random() * 3 + 4 + 's';
-        
-        // RETRASO MÁS LARGO: Para que la lluvia dure más tiempo cayendo (hasta 3 segundos de retraso)
-        confeti.style.animationDelay = Math.random() * 3 + 's';
-        
+        // Velocidad variada para que se vea natural
+        confeti.style.animationDuration = (Math.random() * 3 + 3) + 's'; 
+        confeti.style.animationDelay = (Math.random() * 2) + 's';
+
         document.body.appendChild(confeti);
         
-        // Los borramos después de 10 segundos para dar tiempo a que todos terminen
-        setTimeout(() => {
-            confeti.remove();
-        }, 10000);
+        setTimeout(() => confeti.remove(), 8000);
     }
 }
 
